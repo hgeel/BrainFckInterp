@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
 	char* source = argv[1];
 	int srcp = 0;
 
-	char* buffer = (char*) malloc(BUFFER_SIZE);
+	int* buffer = (int*) malloc(BUFFER_SIZE);
 	memset(buffer, 0, BUFFER_SIZE);
 	int pointer = 0;
 
@@ -46,10 +46,10 @@ int main(int argc, char* argv[]) {
 			//printf("Decrease pointer.\n");	//Debug
 			break;
 		case '.':
-			printf("%c", buffer[pointer]);	//Not working when debug lines are commented.
+			printf("%c", (char) buffer[pointer]);	//Not working when debug lines are commented.
 			break;
 		case ',':
-			scanf("%c", buffer + pointer);
+			scanf("%c", (char*) (buffer + pointer));
 			break;
 		}
 
