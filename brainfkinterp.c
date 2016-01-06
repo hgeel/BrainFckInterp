@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 			break;
 		case '>':
 			++pointer;
-			if(pointer > BUFFER_SIZE)
+			if(pointer > BUFFER_SIZE - 1)
 				pointer = 0;
 			break;
 		case '<':
