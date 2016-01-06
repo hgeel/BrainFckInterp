@@ -14,8 +14,7 @@ int main(int argc, char* argv[]) {
 	char* source = argv[1];
 	int srcp = 0;
 
-	int* buffer = (int*) malloc(BUFFER_SIZE);
-	memset(buffer, 0, BUFFER_SIZE);
+	int* buffer = (int*) calloc(BUFFER_SIZE, sizeof(int));
 	int pointer = 0;
 
 	int loop;
