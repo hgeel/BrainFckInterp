@@ -32,19 +32,15 @@ int main(int argc, char* argv[]) {
 			//printf("Decrease value.\n");		//Debug
 			break;
 		case '>':
-			if(pointer + 1 >= BUFFER_SIZE) {
-				printf("Out of buffer bounds (>).\n");
-				return -1;
-			}
 			++pointer;
+			if(pointer > BUFFER_SIZE)
+				pointer = 0;
 			//printf("Increase pointer.\n");	//Debug
 			break;
 		case '<':
-			if(pointer - 1 < 0) {
-				printf("Out of buffer bounds (<).\n");
-				return -1;
-			}
 			--pointer;
+			if(pointer < 0)
+				pointer = BUFFER_SIZE - 1;
 			//printf("Decrease pointer.\n");	//Debug
 			break;
 		case '.':
