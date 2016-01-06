@@ -4,14 +4,17 @@
 
 #define BUFFER_SIZE 200
 
+char* loadFile(char* fileName);
+
 int main(int argc, char* argv[]) {
 	
-	if(argc < 2) {
-		printf("No input.\n");
+	if(argc < 2 || argc > 2) {
+		printf("Usage: ./brainfkinterp [file]\n");
 		return -1;
 	}
 
-	char* source = argv[1];
+	char* source = loadFile(argv[1]);
+	if(source == NULL) return -1;
 	int srcp = 0;
 
 	int* buffer = (int*) calloc(BUFFER_SIZE, sizeof(int));
@@ -74,8 +77,29 @@ int main(int argc, char* argv[]) {
 		++srcp;
 
 	}
-	
-	printf("\n");
+
 	return 0;
+
+}
+
+char* loadFile(char* fileName) {
+
+	FILE* fd = fopen(fileName, "r");
+	if(fd == NULL) {
+		printf("Could not open file.");
+		return NULL;
+	}
+	fseek(fd, 0, SEEK_END);
+	long size = ftell(fd);
+	rewind(fd);
+	char* buffer = malloc(size);
+	if(buffer == NULL) {
+		printf("Could not allocate buffer to read file.");
+		fclose(fd);
+		return NULL;
+	}
+	fread(buffer, size, 1, fd);
+	fclose(fd);
+	return buffer;
 
 }
