@@ -18,6 +18,8 @@ int main(int argc, char* argv[]) {
 	memset(buffer, 0, BUFFER_SIZE);
 	int pointer = 0;
 
+	int loop;
+
 	while(srcp < strlen(source)) {
 		
 		switch(source[srcp]) {
@@ -50,6 +52,31 @@ int main(int argc, char* argv[]) {
 			break;
 		case ',':
 			scanf("%c", (char*) (buffer + pointer));
+			break;
+		case '[':
+			if(buffer[pointer] == 0) {
+				loop = 1;
+				while(loop > 0) {
+					++srcp;
+					char c = source[srcp];
+					if(c == '[')
+						++loop;
+					if(c == ']')
+						--loop;
+				}
+			}
+			break;
+		case ']':
+			loop = 1;
+			while(loop > 0) {
+				--srcp;
+				char c = source[srcp];
+				if(c == '[')
+					--loop;
+				if(c == ']')
+					++loop;
+			}
+			--srcp;
 			break;
 		}
 
