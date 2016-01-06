@@ -25,26 +25,22 @@ int main(int argc, char* argv[]) {
 		switch(source[srcp]) {
 		case '+':
 			++(buffer[pointer]);
-			//printf("Increase value.\n");		//Debug
 			break;
 		case '-':
 			--(buffer[pointer]);
-			//printf("Decrease value.\n");		//Debug
 			break;
 		case '>':
 			++pointer;
 			if(pointer > BUFFER_SIZE)
 				pointer = 0;
-			//printf("Increase pointer.\n");	//Debug
 			break;
 		case '<':
 			--pointer;
 			if(pointer < 0)
 				pointer = BUFFER_SIZE - 1;
-			//printf("Decrease pointer.\n");	//Debug
 			break;
 		case '.':
-			printf("%c", (char) buffer[pointer]);	//Not working when debug lines are commented.
+			printf("%c", (char) buffer[pointer]);
 			break;
 		case ',':
 			scanf("%c", (char*) (buffer + pointer));
